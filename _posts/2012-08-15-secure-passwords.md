@@ -38,4 +38,6 @@ the fun thing about this is, that those hashfunctions are so damn popular that w
     echo -n 'masterpassword@google.com@32' | sha512sum | cut -c1-32
 .
 
+Update:
 
+Check out my [script](/assets/static/hashed_passes.html). It generates passes from strings with the format 'masterpass@service@passlength' on your client. enjoy.
