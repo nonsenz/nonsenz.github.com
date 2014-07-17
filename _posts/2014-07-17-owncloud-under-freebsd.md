@@ -140,7 +140,7 @@ savexit and make php-fpm autostart by adding php_fpm_enable="YES" to the /etc/rc
     
 ## owncloud
 
-cretae the nginx config for owncloud. check <http://doc.owncloud.org/server/6.0/admin_manual/installation/installation_source.html#nginx-configuration> for more info. note that this installation will not cover ssl as i only use this in my local network.
+create the nginx config for owncloud. check <http://doc.owncloud.org/server/6.0/admin_manual/installation/installation_source.html#nginx-configuration> for more info. note that this installation will not cover ssl as i only use this in my local network.
 
      upstream php-handler {
              server unix:/var/run/php-fpm.sock;
@@ -203,3 +203,20 @@ cretae the nginx config for owncloud. check <http://doc.owncloud.org/server/6.0/
              }
      
      }
+
+download owncloud source with wget. right now i want latest rc from 7:
+
+    > wget http://download.owncloud.org/community/testing/owncloud-7.0.0RC2.tar.bz2
+
+you can find the available files at <https://owncloud.org/install/>.
+after that unpack the file like this an rename the folder to represent the version.
+
+    > tar xvjf owncloud-7.0.0RC2.tar.bz2
+    > mv owncloud owncloud_7
+   
+now ymlink the version dir. this way its easyer to change versions later without changing the nginx config:
+
+    > ln -s owncloud_7 owncloud
+
+check your brwoser again. there should be the owncloud install page. 
+
