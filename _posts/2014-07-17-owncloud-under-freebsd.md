@@ -31,6 +31,12 @@ initializing the db data dirs with
 setup root user
 
     > mysqladmin -u root password
+    
+create the owncloud database and user for later usage:
+
+    > create database owncloud;
+    > create user owncloud identified by 'secret';
+    > GRANT ALL PRIVILEGES ON owncloud.* TO 'owncloud'@'localhost' IDENTIFIED BY 'secret';
 
 ## nginx
 
