@@ -47,4 +47,19 @@ now you should be able to see the default nginx page when surfing the systems ip
 
 ## php
 
+install it as always with portmaster
+
+    > portmaster lang/php55
+
+after that lets check the config. but first copy the template:
+
+    > cp /usr/local/etc/php.ini-production /usr/local/etc/php.ini
+
+to be save uncomment the session.save_path in the config.
+now install some extensions with:
+
+    > portmaster lang/php55-extensions
+    
+you can find ownclouds requirements and recommendations here: http://doc.owncloud.org/server/6.0/admin_manual/installation/installation_source.html#prerequisites.
+
 ## owncloud
