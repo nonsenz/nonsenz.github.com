@@ -56,7 +56,33 @@ here is a small example:
     #The newer pkgng format, only needed for versions before 10.0
     WITH_PKGNG=yes
 
+now we can fetch all the makefiles we need later to install software via ports:
 
+    > portsnap fetch extract
+
+this may take a while. after that you could start installing software. but i recommend two other tools: portmaster (<https://github.com/freebsd/portmaster>) and psearch.
+portmaster allows easy installation and removal of multiple ports.
+
+    > cd /usr/ports/ports-mgmt/portmaster
+    > make install clean
+
+now you can install ports like so:
+
+    > portmaster ports-mgmt/psearch
+
+now to psearch. it allows an easy way to search for ports. you also could search through the directories below /usr/ports but i think psearch makes it easier. lets install it via portmaster.
+
+    > portmaster ports-mgmt/psearch
+    
+if you want to update your ports-data later use portsnap again:
+
+    > portsnap fetch update
+    
+now you can check /usr/ports/UPDATING for special update info for some ports. if nothing special is noted here you simply can update all ports with
+
+    > portmaster -ad
+
+lots of the info here comes from <http://www.bsdnow.tv/tutorials/ports>. check it out for more info about updating and more.
 
 ### tools
-zsh, vim, ...
+
