@@ -129,10 +129,9 @@ after that lets check the config. but first copy the template:
 to be save uncomment the session.save_path in the config.
 now install some extensions with:
 
-    > portmaster lang/php55-extensions
+    > portmaster lang/php55-extensions databases/php55-pdo_mysql 
     
-you can find ownclouds requirements and recommendations here: <http://doc.owncloud.org/server/6.0/admin_manual/installation/installation_source.html#prerequisites.>. be sure to enable the mysql extension and disable sqlite as we dont need it.
-
+you can find ownclouds requirements and recommendations here: <http://doc.owncloud.org/server/6.0/admin_manual/installation/installation_source.html#prerequisites.>. 
 now edit the php-fpm conf at /usr/local/etc/php-fpm.conf and be set the listen params as follows :
 
     listen =/var/run/php-fpm.sock
