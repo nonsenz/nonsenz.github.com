@@ -1,3 +1,12 @@
+---
+layout: post
+title: "install owncloud in freenas jail"
+description: "install owncloud in a freenas jail"
+category: administration
+tags: [freenas, freebsd, jails, owncloud, nginx, mariadb]
+---
+{% include JB/setup %}
+
 we will set up owncloud with mariadb and nginx in a freebsd 9 jail (base jail setup described here: <https://nonsenz.github.io/administration/2014/07/17/freenas-jail-bootstrap/>)
 
 ## mariadb
