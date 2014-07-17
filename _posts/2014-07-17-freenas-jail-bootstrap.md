@@ -21,15 +21,11 @@ like always create a new jail (portjail), edit settings if you like, name it and
 
 because we want to work in the jail over ssh, we have to enable it. click on the created jail in the webinterface and click the shell symbol on the bottom to open a shell in the browser. 
 
-~~~ bash
-> vi /etv/rc.conf
-~~~
+    > vi /etv/rc.conf
 
 change sshd_enable="NO" to "YES" and savexit.
 
-~~~ bash
-> service sshd start
-~~~
+    > service sshd start
 
 now you can login via ssh to the jails ip. 
 
@@ -37,9 +33,7 @@ now you can login via ssh to the jails ip.
 
 because you want your personal user:
 
-~~~ bash
-> adduser
-~~~
+    > adduser
 
 you can add the new user to the wheel group to give him root privileges. you'll be asked if you wan the new user to be invited to other groups. simply type in "wheel".
 
@@ -47,23 +41,20 @@ you can add the new user to the wheel group to give him root privileges. you'll 
 
 the best way to install tools on your machine is via ports with some helpertools. because freenas 9 uses freebsd 9 we have to modify the ports config to be able to use the newer package format. besides this you add other things to your /etc/make.conf to optimize your build process:
 
-~~~ bash
-> vi /etc/make.conf
-~~~
+    > vi /etc/make.conf
 
 here is a small example:
 
-~~~
-#Use clang instead of gcc, only needed for versions before 10.0
-CC=clang
-CXX=clang++
-CPP=clang-cpp
-#Compile everything in a ram disk and use ccache, see our tutorial
-WRKDIRPREFIX=/ram
-WITH_CCACHE_BUILD=yes
-#The newer pkgng format, only needed for versions before 10.0
-WITH_PKGNG=yes
-~~~
+
+    #Use clang instead of gcc, only needed for versions before 10.0
+    CC=clang
+    CXX=clang++
+    CPP=clang-cpp
+    #Compile everything in a ram disk and use ccache, see our tutorial
+    WRKDIRPREFIX=/ram
+    WITH_CCACHE_BUILD=yes
+    #The newer pkgng format, only needed for versions before 10.0
+    WITH_PKGNG=yes
 
 
 
