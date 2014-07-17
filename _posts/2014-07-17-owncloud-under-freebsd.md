@@ -43,8 +43,73 @@ now manually start it via
 
     > service nginx start
 
-now you should be able to see the default nginx page when surfing the systems ip.
+now you should be able to see the default nginx page when surfing the systems ip. next thing to do is move the original config and create a new one:
 
+    > cd /usr/local/etc/nginx
+    > mv nginx.conf nginx.conf.orig
+    
+insert the following code to the new config:
+
+    user  www www;
+    worker_processes 1;
+    worker_priority 15;
+     
+    pid /var/run/nginx.pid;
+    error_log  /var/log/nginx/error.log  info;
+     
+    events {
+      worker_connections  512;
+      accept_mutex on;
+      use kqueue;
+    }
+     
+    http {
+      include       conf.d/options;
+      include       mime.types;
+      default_type  application/octet-stream;
+      access_log  /var/log/nginx/access.log main buffer=32k;
+     
+      include sites/*.site;
+    }
+
+next we have to create the options file /usr/local/etc/nginx/conf.d/options and paste:
+
+    client_body_timeout 5s;
+    client_header_timeout 5s;
+    keepalive_timeout 75s;
+    send_timeout 15s;
+    charset utf-8;
+    gzip off;
+    gzip_static on;
+    gzip_proxied any;
+    ignore_invalid_headers on;
+    keepalive_requests 50;
+    keepalive_disable none;
+    max_ranges 1;
+    msie_padding off;
+    open_file_cache max=1000 inactive=2h;
+    open_file_cache_errors on;
+    open_file_cache_min_uses 1;
+    open_file_cache_valid 1h;
+    output_buffers 1 512;
+    postpone_output 1440;
+    read_ahead 512K;
+    recursive_error_pages on;
+    reset_timedout_connection on;
+    sendfile on;
+    server_tokens off;
+    server_name_in_redirect off;
+    source_charset utf-8;
+    tcp_nodelay on;
+    tcp_nopush off;
+    gzip_disable "MSIE [1-6]\.(?!.*SV1)";
+    limit_req_zone $binary_remote_addr zone=gulag:1m rate=60r/m;
+    log_format main '$remote_addr $host $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $ssl_cipher $request_time';
+
+finally create the sites dir 
+
+    > mkdir /usr/local/etc/nginx/sites
+    
 ## php
 
 install it as always with portmaster
