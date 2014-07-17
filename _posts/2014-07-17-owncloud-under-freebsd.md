@@ -60,6 +60,6 @@ now install some extensions with:
 
     > portmaster lang/php55-extensions
     
-you can find ownclouds requirements and recommendations here: http://doc.owncloud.org/server/6.0/admin_manual/installation/installation_source.html#prerequisites.
+you can find ownclouds requirements and recommendations here: <http://doc.owncloud.org/server/6.0/admin_manual/installation/installation_source.html#prerequisites.>
 
 ## owncloud
