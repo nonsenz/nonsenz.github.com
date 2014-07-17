@@ -138,8 +138,68 @@ savexit and make php-fpm autostart by adding php_fpm_enable="YES" to the /etc/rc
 
     > service php-fpm start
     
-
-
-
-
 ## owncloud
+
+cretae the nginx config for owncloud. check <http://doc.owncloud.org/server/6.0/admin_manual/installation/installation_source.html#nginx-configuration> for more info. note that this installation will not cover ssl as i only use this in my local network.
+
+     upstream php-handler {
+             server unix:/var/run/php-fpm.sock;
+     }
+     
+     server {
+             listen 80;
+             server_name localhost;
+     
+             # Path to the root of your installation
+             root /var/www/owncloud;
+     
+             client_max_body_size 10G; # set max upload size
+             fastcgi_buffers 64 4K;
+     
+             rewrite ^/caldav(.*)$ /remote.php/caldav$1 redirect;
+             rewrite ^/carddav(.*)$ /remote.php/carddav$1 redirect;
+             rewrite ^/webdav(.*)$ /remote.php/webdav$1 redirect;
+     
+             index index.php;
+             error_page 403 /core/templates/403.php;
+             error_page 404 /core/templates/404.php;
+     
+             location = /robots.txt {
+                 allow all;
+                 log_not_found off;
+                 access_log off;
+             }
+     
+             location ~ ^/(data|config|\.ht|db_structure\.xml|README) {
+                     deny all;
+             }
+     
+             location / {
+                     # The following 2 rules are only needed with webfinger
+                     rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
+                     rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json last;
+     
+                     rewrite ^/.well-known/carddav /remote.php/carddav/ redirect;
+                     rewrite ^/.well-known/caldav /remote.php/caldav/ redirect;
+     
+                     rewrite ^(/core/doc/[^\/]+/)$ $1/index.html;
+     
+                     try_files $uri $uri/ index.php;
+             }
+     
+             location ~ ^(.+?\.php)(/.*)?$ {
+                     try_files $1 =404;
+     
+                     include fastcgi_params;
+                     fastcgi_param SCRIPT_FILENAME $document_root$1;
+                     fastcgi_param PATH_INFO $2;
+                     fastcgi_pass php-handler;
+             }
+             # Optional: set long EXPIRES header on static assets
+             location ~* ^.+\.(jpg|jpeg|gif|bmp|ico|png|css|js|swf)$ {
+                     expires 30d;
+                     # Optional: Don't log access to assets
+                     access_log off;
+             }
+     
+     }
