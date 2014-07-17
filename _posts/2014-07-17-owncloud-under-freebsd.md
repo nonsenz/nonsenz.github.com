@@ -55,7 +55,7 @@ insert the following code to the new config:
     worker_priority 15;
      
     pid /var/run/nginx.pid;
-    error_log  /var/log/nginx/error.log  info;
+    error_log  /var/log/nginx-error.log  info;
      
     events {
       worker_connections  512;
@@ -67,7 +67,7 @@ insert the following code to the new config:
       include       conf.d/options;
       include       mime.types;
       default_type  application/octet-stream;
-      access_log  /var/log/nginx/access.log main buffer=32k;
+      access_log  /var/log/nginx-access.log main buffer=32k;
      
       include sites/*.site;
     }
