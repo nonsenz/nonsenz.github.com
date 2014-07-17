@@ -219,9 +219,9 @@ after that unpack the file like this an rename the folder to represent the versi
     > tar xvjf owncloud-7.0.0RC2.tar.bz2
     > mv owncloud owncloud_7
    
-now ymlink the version dir. this way its easyer to change versions later without changing the nginx config:
+now symlink the version dir. this way its easyer to change versions later without changing the nginx config:
 
     > ln -s owncloud_7 owncloud
 
-check your brwoser again. there should be the owncloud install page. 
+check your browser again. there should be the owncloud install page. while setting it up open the advanced storage config and enter the owncloud user data configured earlier.
 
