@@ -43,4 +43,8 @@ now manually start it via
 
     > service nginx start
 
+now you should be able to see the default nginx page when surfing the systems ip.
+
+## php
+
 ## owncloud
