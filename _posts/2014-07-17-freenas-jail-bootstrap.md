@@ -86,3 +86,11 @@ lots of the info here comes from <http://www.bsdnow.tv/tutorials/ports>. check i
 
 ### tools
 
+now for some standard tools. install it all via portmaster:
+
+    > portmaster shells/zsh editors/vim
+    
+as all the software and its dependencies will be compiled on your machine, this can take while...
+
+now you have a nice base jail to start working with. have fun.
+
