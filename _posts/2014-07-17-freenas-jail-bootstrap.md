@@ -88,7 +88,7 @@ lots of the info here comes from <http://www.bsdnow.tv/tutorials/ports>. check i
 
 now for some standard tools. install it all via portmaster:
 
-    > portmaster shells/zsh editors/vim
+    > portmaster shells/zsh editors/vim ftp/wget
     
 as all the software and its dependencies will be compiled on your machine, this can take while...
 now set up zsh as your default shell with
