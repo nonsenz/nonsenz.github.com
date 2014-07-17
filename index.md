@@ -18,6 +18,5 @@ hello and welcome to my texts :-)
     </br> <em>{{ post.excerpt }} </em>
     </div>
   {% endfor %}
-</ul>need to clean up the themes, make theme usage guides with theme-specific markup examples.
 
 
