@@ -60,7 +60,21 @@ now install some extensions with:
 
     > portmaster lang/php55-extensions
     
-you can find ownclouds requirements and recommendations here: <http://doc.owncloud.org/server/6.0/admin_manual/installation/installation_source.html#prerequisites.>
-be sure to enable the mysql extension and disable sqlite as we dont need it.
+you can find ownclouds requirements and recommendations here: <http://doc.owncloud.org/server/6.0/admin_manual/installation/installation_source.html#prerequisites.>. be sure to enable the mysql extension and disable sqlite as we dont need it.
+
+now edit the php-fpm conf at /usr/local/etc/php-fpm.conf and be set the listen params as follows :
+
+    listen =/var/run/php-fpm.sock
+    listen.owner = www
+    listen.group = www
+    listen.mode = 0660
+
+savexit and make php-fpm autostart by adding php_fpm_enable="YES" to the /etc/rc.conf and start it manually with
+
+    > service php-fpm start
+    
+
+
+
 
 ## owncloud
