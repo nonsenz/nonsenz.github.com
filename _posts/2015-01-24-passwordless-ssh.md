@@ -2,7 +2,7 @@
 layout: post
 title: "passwordless ssh"
 description: "how to use keypairs to authenticate against ssh|scp|..."
-category: 
+category: administration 
 tags: [security, shell]
 ---
 {% include JB/setup %}
