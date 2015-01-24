@@ -24,9 +24,9 @@ don't forget to check out the ssh-keygen manpage for all the gory details.
 
 normally you just have to set the following sshd_config_options: 
 
-	> # /etc/ssh/sshd_config
-	> PasswordAuthentication no
-	> ChallengeResponseAuthentication no
-	> UsePAM yes
+	# /etc/ssh/sshd_config
+	PasswordAuthentication no
+	ChallengeResponseAuthentication no
+	UsePAM yes
 
 and don't forget to restart your sshd.
